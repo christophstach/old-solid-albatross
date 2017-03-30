@@ -8,7 +8,6 @@ import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
 
-
 const App = () => (
   <Provider store={store}>
     <div className="App">
