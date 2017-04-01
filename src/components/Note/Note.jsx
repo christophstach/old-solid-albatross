@@ -1,34 +1,45 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actions as noteActions } from './';
 
 
 const Note = (props) => (
-  <div className="col-3 m-3">
-    <div className="card">
-      <div className="card-header">
-        {props.isEditing ? (
-          <input type="text" className="form-control" value={props.title}/>
-        ) : (
-          <h3 className="card-title mb-0">#{props.id} {props.title}</h3>
-        )}
+  <div className="card">
+
+      <div className="card-header note-title p-0">
+        <input
+          type="text"
+          className="form-control p-0"
+          value={props.isEditing ? props.note.title : props.title}
+          onFocus={() => props.onEdit()}
+          onBlur={() => props.isEditing && props.onSave()}
+          onChange={(e) => props.isEditing && props.changeTitle(e.target.value)}
+        />
       </div>
-      <div className="card-block">
-        {props.isEditing ? (
-          <textarea className="form-control p-0" value={props.text} onChange={() => {}} />
-        ) : (
-          <p>{props.text}</p>
-        )}
+      <div className="note-text">
+          <textarea
+            className="form-control p-0"
+            value={props.isEditing ? props.note.text : props.text}
+            onFocus={() => props.onEdit()}
+            onBlur={() => props.isEditing && props.onSave()}
+            onChange={(e) => props.isEditing && props.changeText(e.target.value)}
+          />
       </div>
       <div className="card-footer">
-        {props.isEditing ? (
-          <button className="btn btn-success ml-auto">Save</button>
-        ) : (
-          <button className="btn btn-warning ml-auto">Edit</button>
-        )}
-      </div>
 
-    </div>
+      </div>
   </div>
 );
 
-export default Note;
+const mapStateToProps = (state) => {
+  return {
+    note: state.note
+  }
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(noteActions, dispatch);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Note);
 

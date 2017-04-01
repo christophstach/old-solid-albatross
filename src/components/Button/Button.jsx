@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const AddNoteButton = (props: {
+const Button = (props: {
     type: string,
     onClick: any,
     children: any
@@ -17,4 +17,4 @@ const AddNoteButton = (props: {
   </button>
 );
 
-export default AddNoteButton;
+export default Button;
