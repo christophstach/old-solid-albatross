@@ -68,7 +68,7 @@ export const notes = (state = [], action) => {
       return state.map(n => note(n, action));
     }
     case 'REMOVE_NOTE': {
-      return state.filter((val) => action.payload === val.id);
+      return state.filter((val) => action.payload !== val.id);
     }
     default: {
       return state;

@@ -7,17 +7,25 @@ import { actions as noteActions } from './';
 const Note = (props) => (
   <div className="card">
 
-      <div className="card-header note-title p-0">
-        <input
-          type="text"
-          className="form-control p-0"
-          value={props.isEditing ? props.note.title : props.title}
-          onFocus={() => props.onEdit()}
-          onBlur={() => props.isEditing && props.onSave()}
-          onChange={(e) => props.isEditing && props.changeTitle(e.target.value)}
-        />
-      </div>
-      <div className="note-text">
+    <div className="card-header note-title p-0">
+      <input
+        type="text"
+        className="form-control p-0"
+        value={props.isEditing ? props.note.title : props.title}
+        onFocus={() => props.onEdit()}
+        onBlur={() => props.isEditing && props.onSave()}
+        onChange={(e) => props.isEditing && props.changeTitle(e.target.value)}
+      />
+      <button
+        type="button"
+        className="close"
+        aria-label="Close"
+        onClick={() => props.onClose()}
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div className="note-text">
           <textarea
             className="form-control p-0"
             value={props.isEditing ? props.note.text : props.text}
@@ -25,10 +33,10 @@ const Note = (props) => (
             onBlur={() => props.isEditing && props.onSave()}
             onChange={(e) => props.isEditing && props.changeText(e.target.value)}
           />
-      </div>
-      <div className="card-footer">
+    </div>
+    <div className="card-footer">
 
-      </div>
+    </div>
   </div>
 );
 

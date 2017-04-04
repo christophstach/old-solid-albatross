@@ -23,6 +23,7 @@ const Desktop = (props) => {
               props.editNote(n.id)
             }}
             onSave={() => props.changeNote(n.id, props.note)}
+            onClose={() => props.removeNote(n.id)}
           />
         </div>
       ))}
